@@ -17,6 +17,10 @@ import {
   Card,
   Row,
   Col,
+  Table,
+  Switch,
+  TableColumn,
+  Pagination,
   MenuItem } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
@@ -40,4 +44,8 @@ Vue.use(BreadcrumbItem)
 Vue.use(Card)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Switch)
+Vue.use(Pagination)
 Vue.prototype.$message = Message
