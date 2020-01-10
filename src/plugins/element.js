@@ -22,6 +22,7 @@ import {
   TableColumn,
   Pagination,
   Dialog,
+  MessageBox,
   MenuItem } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
@@ -51,3 +52,4 @@ Vue.use(Switch)
 Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm

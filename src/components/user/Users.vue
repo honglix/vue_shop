@@ -58,7 +58,7 @@
           label="操作" width="180px">
           <template v-slot:default="slotProps">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(slotProps.row.id)"></el-button>
-            <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeUserById(slotProps.row.id)"></el-button>
             <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
           </template>
         </el-table-column>
@@ -276,6 +276,27 @@ data() {
         this.getUserList()
         this.$message.success('更新用户成功')
       })
+    },
+    // 根据ID删除用户信息
+    async removeUserById(id) {
+      // 弹框询问用户是否删除数据
+      const confirmResult = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).catch(error => error)
+              // 如果用户确认删除，则返回值为字符串 confirm
+              // 如果用户取消了删除，则返回值为字符串 cancel
+              if (confirmResult !== 'confirm') {
+                return this.$message.info('已经取消删除')
+              }
+
+              const { data: res } = await this.$http.delete('users/' + id)
+              if (res.meta.status !== 200) {
+                return this.$message.error('删除用户失败')
+              }
+              this.$message.success('删除用户成功')
+              this.getUserList()
     }
   }
 }
